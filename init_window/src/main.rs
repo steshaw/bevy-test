@@ -1,14 +1,16 @@
 use bevy::prelude::*;
+use bevy::window::PresentMode;
 
 fn main() {
-    App::build()
-        .insert_resource(WindowDescriptor {
-            title: "Bevy Invaders".to_string(),
-            width: 640.0,
-            height: 480.0,
-            vsync: true,
+    App::new()
+        .add_plugins(DefaultPlugins.set(WindowPlugin {
+            primary_window: Some(Window {
+                title: "Bevy Invaders".to_string(),
+                resolution: (640., 480.).into(),
+                present_mode: PresentMode::AutoVsync,
+                ..Default::default()
+            }),
             ..Default::default()
-        })
-        .add_plugins(DefaultPlugins)
+        }))
         .run();
 }
